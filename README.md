@@ -33,7 +33,6 @@ Para garantizar la reproducibilidad del entorno, a continuación se detallan las
 ---
 
 ## ⚙️ Configuración Inicial y Git
-
 El entorno local se encuentra enlazado con GitHub mediante autenticación segura por **clave SSH**.
 
 ### Configuración de identidad:
