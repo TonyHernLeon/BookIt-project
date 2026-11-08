@@ -40,3 +40,11 @@ El entorno local se encuentra enlazado con GitHub mediante autenticación segura
 ```bash
 git config --global user.name "Tu Nombre"
 git config --global user.email "tu.email@example.com"
+```
+
+## 💭 Decisiones de arquitectura
+
+- [0001. Elección de Monorepo](docs/adr/0002-postgresql-16.md)
+- [0002. Cambio a PostgreSQL 16](docs/adr/0002-postgresql-16.md)
+- [0003. Decisión de usar una base de datos por servicio](docs/adr/0003-base-de-datos-por-servicio.md)
+- [0004. Decisión de nombre y puerto por servicio](docs/adr/0004-volumen-con-nombre-y-puerto-por-servicio.md)
