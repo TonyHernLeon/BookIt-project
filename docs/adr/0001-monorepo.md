@@ -1,19 +1,25 @@
-# 0001. Elección de Monorepo
+# 0001. Monorepo para todos los servicios
 
-## Fecha: 2026-11-08
-## Estado: Aceptada ✅
+Fecha: 2026-11-08
+Estado: Aceptada
 
-## Contexto 📝
-[¿Qué problema o situación te obliga a decidir? ¿Qué restricciones hay?]
-Quiero realizar un proyecto de desarrollo de software y necesito decidir la estructura del repositorio. He considerado dos opciones: Monorepo y Multirepo.
+## Contexto
 
-## Decisión 💭
-[Qué has decidido, en una o dos frases, en presente ("Usamos...").]
-Tras preguntarle a Claude, y que me indique sobre monorepo y multirepo, he decidido utilizar un **Monorepo** para este proyecto. Esta decisión se basa en la necesidad de mantener una estructura unificada y coherente para todos los componentes del proyecto, facilitando la gestión de dependencias y la colaboración entre equipos.
+BookIt se compone de varios servicios (catálogo, reservas, usuarios, notificaciones, gateway y frontend) que evolucionan a la vez y comparten infraestructura local (`docker-compose.yml`), documentación y, más adelante, pipeline de CI. El proyecto lo desarrolla una sola persona.
 
-## Alternativas consideradas ⎇
-[Qué otras opciones había y por qué las descartas.]
+Hay que decidir si cada servicio vive en su propio repositorio o si todos comparten uno.
 
-## Consecuencias 🔚
-[Qué ganas, qué pierdes y qué obligaciones nuevas aparecen.]
-El proyecto se beneficiará de una mayor cohesión y facilidad de mantenimiento, pero podría enfrentar desafíos en términos de escalabilidad y complejidad a medida que crezca.
+## Decisión
+
+Usamos un único repositorio (monorepo) con un directorio por servicio en la raíz y la infraestructura común (`docker-compose.yml`, `docs/adr/`) junto a ellos.
+
+## Alternativas consideradas
+
+- **Un repositorio por servicio (multirepo)**: descartada. Aporta permisos y ciclos de despliegue independientes, pero aquí no hay equipos separados, y obligaría a duplicar o repartir el `docker-compose.yml`, el CI y los ADRs.
+- **Monorepo**: elegida. Un solo `git clone` levanta todo el sistema, y los cambios que afectan a varios servicios (por ejemplo, un contrato entre catálogo y reservas) van en un único commit y un único PR.
+
+## Consecuencias
+
+- **Positivas**: infraestructura, documentación y convenciones compartidas en un solo sitio, y cambios atómicos entre servicios.
+- **Negativas**: el historial de Git mezcla todos los servicios y el repositorio crece con el tiempo. Existe más riesgo de acoplamiento accidental entre servicios, por lo que hace falta disciplina.
+- **Obligaciones**: el pipeline de CI debe configurarse para construir solo el servicio afectado por cada cambio. Cada servicio mantiene su propio `pom.xml` y su propio ciclo de build, sin depender del código de otro.
