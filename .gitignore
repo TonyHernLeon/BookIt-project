@@ -1,0 +1,20 @@
+## JetBrains IDEs (IntelliJ, PyCharm, WebStorm, etc.)
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+## VS Code
+.vscode/
+*.code-workspace
+
+## OS Generated files
+.DS_Store
+Thumbs.db
+
+## Build & Dependency outputs (Añade o descomenta según tu entorno)
+target/
+build/
+node_modules/
+*.log
