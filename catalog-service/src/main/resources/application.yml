@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: catalog-service
+  datasource:
+    url: jdbc:postgresql://localhost:5433/catalog     # el puerto y la BD que hayas puesto en compose
+    username: catalog
+    password: catalog
+  jpa:
+    hibernate:
+      ddl-auto: validate       # Hibernate solo valida, nunca modifica
+    open-in-view: false
+  flyway:
+    enabled: true              # por defecto busca en classpath:db/migration
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
