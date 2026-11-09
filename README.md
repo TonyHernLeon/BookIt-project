@@ -21,7 +21,7 @@ Desde la raíz del repositorio:
 
 ```bash
 docker compose up -d
-```
+```cd .. 
 
 ## Puertos en local
 
@@ -35,3 +35,6 @@ docker compose up -d
 - [0002. PostgreSQL 16 como versión de base de datos](docs/adr/0002-postgresql-16.md)
 - [0003. Una base de datos por servicio](docs/adr/0003-base-de-datos-por-servicio.md)
 - [0004. Volumen con nombre y puerto por servicio](docs/adr/0004-volumen-con-nombre-y-puerto-por-servicio.md)
+- [0005. Flyway gestiona el esquema y Hibernate solo valida](docs/adr/0005-flyway-y-ddl-auto-validate.md)
+- [0006. UUID como identificador de las entidades](docs/adr/0006-uuid-como-identificador.md)
+- [0007. Empaque JAR para despliegue de servicios](docs/adr/0007-empaque-jar.md)
