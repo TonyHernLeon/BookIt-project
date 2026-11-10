@@ -2,7 +2,7 @@ spring:
   application:
     name: catalog-service
   datasource:
-    url: jdbc:postgresql://localhost:5433/catalog     # el puerto y la BD que hayas puesto en compose
+    url: jdbc:postgresql://localhost:5433/catalog     # ver docker-compose.yml
     username: catalog
     password: catalog
   jpa:
