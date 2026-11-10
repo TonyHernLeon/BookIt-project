@@ -21,13 +21,17 @@ Desde la raíz del repositorio:
 
 ```bash
 docker compose up -d
-```cd .. 
+```
 
 ## Puertos en local
 
 | Servicio | Puerto host | Puerto contenedor |
 |---|---|---|
 | catalog-db | 5433 | 5432 |
+
+## Convenciones
+
+- Columnas de fecha de creación: `fecha_creacion` (tipo `TIMESTAMPTZ`) en todas las tablas.
 
 ## Decisiones de arquitectura
 
