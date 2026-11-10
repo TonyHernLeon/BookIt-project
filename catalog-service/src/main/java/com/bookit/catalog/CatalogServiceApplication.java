@@ -1,4 +1,4 @@
-package com.bookit.catalog_service;
+package com.bookit.catalog;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
