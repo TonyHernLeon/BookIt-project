@@ -16,9 +16,12 @@ Guía personal. Se amplía a medida que aparecen comandos nuevos.
 
 | Para qué | Dónde ejecutarlo | Comando |
 |---|---|---|
+| Levantar la BD | Raíz del repo | `docker compose up -d` |
 | Compilar y pasar tests | `catalog-service/` (con la BD levantada) | `mvn clean verify` |
 | Arrancar el servicio | `catalog-service/` | `mvn spring-boot:run` |
 | Comprobar salud | Navegador | `localhost:8080/actuator/health` |
+
+Antes de commitear: levanta la BD (`docker compose up -d` en la raíz) y ejecuta `mvn clean verify` en `catalog-service/`. Debe acabar en `BUILD SUCCESS`.
 
 ## Git
 
@@ -36,3 +39,4 @@ Guía personal. Se amplía a medida que aparecen comandos nuevos.
 | Connection refused al arrancar | La BD no está levantada | `docker compose up -d` |
 | Checksum mismatch de Flyway | Edité una migración ya aplicada | Revertir el fichero, nunca editarla |
 | No encuentra `@SpringBootConfiguration` | Test en otro paquete que la clase principal | Mover el test al mismo paquete |
+| Aparece `failed to connect to the docker API ... docker.sock` | Docker Desktop no está arrancado | Abrir Docker Desktop y esperar a Engine running |
