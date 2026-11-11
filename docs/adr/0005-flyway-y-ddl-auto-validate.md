@@ -13,15 +13,14 @@ Flyway es el único dueño del esquema, con migraciones `V{versión}__{descripci
 
 ## Alternativas consideradas
 
-- **`ddl-auto: update`**: descartada. Cambia el esquema sin control ni historial y puede divergir entre entornos.
-- **`ddl-auto: create`/`create-drop`**: descartada. Destruye datos; solo sirve para pruebas desechables.
+- `ddl-auto: update`: descartada. Cambia el esquema sin control ni historial y puede divergir entre entornos.
+- `ddl-auto: create` y `create-drop`: descartadas. Destruyen datos; solo sirven para pruebas desechables.
 - **Scripts SQL manuales**: descartada. No hay registro de qué se aplicó ni orden garantizado.
 - **Liquibase**: descartada. Es válida, pero Flyway con SQL plano es más simple y está integrada en Spring Boot.
-- **Flyway + `validate`**: elegida. Esquema versionado como código y fallo temprano si algo no coincide.
+- **Flyway con `validate`**: elegida. Esquema versionado como código y fallo temprano si algo no coincide.
 
 ## Consecuencias
 
-- **Positivas**: esquema reproducible e historial en `flyway_schema_history`. La app falla al arrancar si entidad y tabla divergen.
-- **Negativas**: toda modificación requiere una migración nueva; las ya aplicadas no se pueden editar (el checksum falla y se corrige con `V2__...`).
-- **Obligaciones**: cada servicio replica esta convención. Se necesita `flyway-database-postgresql` además de `flyway-core`.
-
+- **Positivas**: esquema reproducible e historial en `flyway_schema_history`. La aplicación falla al arrancar si entidad y tabla divergen.
+- **Negativas**: toda modificación requiere una migración nueva. Las ya aplicadas no se pueden editar: el checksum lo detecta y aborta el arranque, y el cambio va en una `V2`.
+- **Obligaciones**: cada servicio replica esta convención. Se necesita `flyway-database-postgresql` además de `flyway-core`. En local, si la BD queda en un estado inconsistente, se recrea con `docker compose down -v`.
