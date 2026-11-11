@@ -20,3 +20,7 @@ node_modules/
 *.log
 ## Excepción: el paquete port/out de la arquitectura hexagonal no es salida de build
 !**/src/main/java/**/port/out/
+
+## Others files
+*.pdf
+.run

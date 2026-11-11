@@ -42,3 +42,4 @@ docker compose up -d
 - [0005. Flyway gestiona el esquema y Hibernate solo valida](docs/adr/0005-flyway-y-ddl-auto-validate.md)
 - [0006. UUID como identificador de las entidades](docs/adr/0006-uuid-como-identificador.md)
 - [0007. Empaque JAR para despliegue de servicios](docs/adr/0007-empaque-jar.md)
+- [0008. Rama develop como integración y main estable](docs/adr/0008-develop-como-rama-de-integracion.md)
