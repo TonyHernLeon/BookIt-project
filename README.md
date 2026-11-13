@@ -43,3 +43,7 @@ docker compose up -d
 - [0006. UUID como identificador de las entidades](docs/adr/0006-uuid-como-identificador.md)
 - [0007. Empaque JAR para despliegue de servicios](docs/adr/0007-empaque-jar.md)
 - [0008. Rama develop como integración y main estable](docs/adr/0008-develop-como-rama-de-integracion.md)
+- [0009. Negocio como entidad de dominio que nace válida](docs/adr/0009-negocio-como-entidad-de-dominio.md)
+- [0010. Categoria y Ciudad como records con invariantes propias](docs/adr/0010-categoria-ciudad-como-records.md)
+- [0011. La fecha de creación se recibe desde fuera del dominio](docs/adr/0011-fecha-de-creacion-fuera-del-dominio.md)
+- [0012. El nombre del negocio es un String validado en Negocio](docs/adr/0012-nombre-de-negocio-como-string.md)
