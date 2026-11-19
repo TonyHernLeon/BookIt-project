@@ -47,3 +47,5 @@ docker compose up -d
 - [0010. Categoria y Ciudad como records con invariantes propias](docs/adr/0010-categoria-ciudad-como-records.md)
 - [0011. La fecha de creación se recibe desde fuera del dominio](docs/adr/0011-fecha-de-creacion-fuera-del-dominio.md)
 - [0012. El nombre del negocio es un String validado en Negocio](docs/adr/0012-nombre-de-negocio-como-string.md)
+- [0013. Puertos del catálogo: una interfaz por caso de uso](docs/adr/0013-puertos-del-catalogo.md)
+
