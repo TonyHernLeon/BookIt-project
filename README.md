@@ -48,4 +48,5 @@ docker compose up -d
 - [0011. La fecha de creación se recibe desde fuera del dominio](docs/adr/0011-fecha-de-creacion-fuera-del-dominio.md)
 - [0012. El nombre del negocio es un String validado en Negocio](docs/adr/0012-nombre-de-negocio-como-string.md)
 - [0013. Puertos del catálogo: una interfaz por caso de uso](docs/adr/0013-puertos-del-catalogo.md)
+- [0014. Excepciones de dominio: jerarquía unchecked con una excepción por campo](docs/adr/0014-excepciones-de-dominio.md)
 
