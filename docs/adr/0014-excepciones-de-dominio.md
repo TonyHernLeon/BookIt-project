@@ -29,7 +29,7 @@ Hay que decidir qué excepciones existen, cómo se organizan, si son *checked* o
 | `CiudadNoValidaException` | `DatoInvalidoException` | La ciudad es nula, vacía o supera 100 caracteres |
 | `NegocioNoEncontradoException` | `DominioException` | El negocio buscado no existe |
 
-3. **Todas viven en `domain`**, sin imports de Spring, JPA ni Jakarta.
+3. **Las bases son abstractas y las excepciones viven en un subpaquete.** `DominioException` y `DatoInvalidoException` son `abstract`, con constructor `protected`: solo se lanzan excepciones concretas. Las seis viven en `com.bookit.catalog.domain.exception`, dentro de `domain`, así que no pueden importar Spring, JPA ni Jakarta.
 
 4. **Quién lanza cada una:**
 
@@ -47,7 +47,8 @@ Hay que decidir qué excepciones existen, cómo se organizan, si son *checked* o
 - **Excepciones sueltas por campo, sin raíz común**: descartada. Quien quiera tratar "cualquier dato inválido" tendría que capturar tres excepciones y añadir otra cada vez que aparezca un campo nuevo. La jerarquía lo resuelve con una sola.
 - **Usar excepciones estándar de Java (`IllegalArgumentException`)**: descartada. No distinguen un dato inválido de otros errores y no hablan el lenguaje del negocio.
 - **Que el dominio lance `NegocioNoEncontradoException`**: descartada. "No existe" es el resultado de una consulta al almacenamiento, no una regla interna de `Negocio`. Coordinar esa consulta es trabajo del servicio de aplicación.
-- **Jerarquía unchecked con una excepción por campo**: elegida.
+- **Bases instanciables (`public class`)**: descartada. Permitirían lanzar una excepción genérica y se perdería el nombre que dice qué pasó.
+- **Jerarquía unchecked con bases abstractas y una excepción por campo**: elegida.
 
 ## Consecuencias
 
