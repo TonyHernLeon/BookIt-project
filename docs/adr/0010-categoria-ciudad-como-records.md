@@ -11,6 +11,8 @@ La `V1` guarda `categoria` y `ciudad` como `VARCHAR`. Una categoría como "clín
 
 `Categoria` y `Ciudad` son `record` con una única propiedad de texto. Cada uno valida sus invariantes: no nulo, no vacío ni solo espacios, y máximo 50 y 100 caracteres respectivamente. Se guardan como `VARCHAR` sin cambiar la `V1`.
 
+`Categoria` y `Ciudad` normalizan el texto con `strip()` antes de validar, y la longitud máxima se mide sobre el valor ya normalizado. Cada `record` expone una constante pública con su mensaje de error, que `Negocio` reutiliza.
+
 ## Alternativas consideradas
 
 - **`String` validado dentro de `Negocio`**: descartada. Mezcla las reglas de todos los campos en un solo constructor y su evolución afectaría a `Negocio`.
@@ -21,5 +23,7 @@ La `V1` guarda `categoria` y `ciudad` como `VARCHAR`. Una categoría como "clín
 ## Consecuencias
 
 - **Positivas**: es imposible crear una categoría o ciudad inválida, y pasar a tablas o añadir país a `Ciudad` solo cambia ese tipo.
-- **Negativas**: más clases para reglas hoy simples. El texto libre permite variantes ("Peluquería", "peluqueria") hasta que se normalice.
+- **Negativas**: 
+    - más clases para reglas hoy simples. El texto libre permite variantes ("Peluquería", "peluqueria") hasta que se normalice. 
+    - `strip()` elimina los espacios sobrantes, pero el texto libre sigue permitiendo variantes de mayúsculas y tildes ("Peluquería" y "peluqueria") hasta que se normalice o se pase a tablas propias.
 - **Obligaciones**: si se pasa a tablas propias, se escribirá un ADR nuevo y una migración `V2`; la `V1` no se edita.
