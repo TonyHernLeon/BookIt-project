@@ -11,6 +11,8 @@ El nombre no tiene identidad propia y sus reglas son pocas y simples. La `V1` ex
 
 `nombre` es un `String` dentro de `Negocio`. El método de creación valida que no sea nulo, vacío ni solo espacios, y que no supere 150 caracteres.
 
+El nombre se normaliza con `strip()` antes de validar, y la longitud máxima se mide sobre el valor ya normalizado. La lógica vive en un único método privado de `Negocio`, usado por `crear(...)` y `reconstruir(...)`.
+
 ## Alternativas consideradas
 
 - **`record NombreNegocio`**: descartada por ahora. Con tres reglas, aporta más código que valor. Se extraerá si las reglas crecen.
@@ -21,4 +23,6 @@ El nombre no tiene identidad propia y sus reglas son pocas y simples. La `V1` ex
 
 - **Positivas**: menos clases y reglas visibles en un solo sitio.
 - **Negativas**: la validación vive en `Negocio`, así que cualquier otra clase que use un nombre debe repetirla o extraer el tipo.
-- **Obligaciones**: un nombre inválido lanza una excepción de dominio, que se define en S4.
+- **Obligaciones**: 
+    - un nombre inválido lanza una excepción de dominio, que se define en S4.
+    - El nombre se normaliza con `strip()` antes de validar, y la longitud máxima se mide sobre el valor ya normalizado. La lógica vive en un único método privado de `Negocio`, usado por `crear(...)` y `reconstruir(...)`.s

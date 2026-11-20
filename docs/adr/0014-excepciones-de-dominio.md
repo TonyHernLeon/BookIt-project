@@ -66,3 +66,4 @@ Hay que decidir qué excepciones existen, cómo se organizan, si son *checked* o
   - Los mensajes de las excepciones deben explicar qué regla se rompió, sin exponer datos sensibles.
   - Los tests de los casos de uso comprobarán qué excepción se lanza en cada situación.
   - Las reglas de longitud máxima coinciden con la migración `V1` (150, 50 y 100 caracteres), según el [ADR 0010](0010-categoria-ciudad-como-records.md) y el [ADR 0012](0012-nombre-de-negocio-como-string.md).
+  - Los mensajes de las excepciones son para desarrolladores. La capa web traducirá por tipo de excepción, con ficheros `.properties` si hace falta mostrar textos al usuario o soportar varios idiomas.

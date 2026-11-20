@@ -11,6 +11,8 @@ Estado: Aceptada
 
 `Negocio` es una entidad de dominio sin anotaciones de frameworks. Se crea con `crear(...)`, que genera el `UUID` y valida las invariantes, o con `reconstruir(...)`, que recibe el id y la fecha ya existentes. No hay constructor vacío ni setters sobre campos con reglas. El id no cambia nunca.
 
+`id` y `fechaCreacion` nulos son errores de programación y lanzan `NullPointerException` (`Objects.requireNonNull`). Los datos que vienen del usuario (nombre, categoría y ciudad) lanzan excepciones de dominio. `Negocio` rechaza además las referencias nulas a `Categoria` y `Ciudad` con la excepción de su campo, reutilizando los mensajes de los propios `record`.
+
 ## Alternativas consideradas
 
 - **Constructor vacío y setters (estilo JavaBean)**: descartada. Deja el objeto en estado inválido hasta que se rellena y permite romper las invariantes después.
