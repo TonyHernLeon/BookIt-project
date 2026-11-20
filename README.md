@@ -50,3 +50,33 @@ docker compose up -d
 - [0013. Puertos del catálogo: una interfaz por caso de uso](docs/adr/0013-puertos-del-catalogo.md)
 - [0014. Excepciones de dominio: jerarquía unchecked con una excepción por campo](docs/adr/0014-excepciones-de-dominio.md)
 
+
+# Biblioteca de prompts
+
+Prompts usados con GitHub Copilot en BookIt, con su resultado real y lo aprendido. No es una decisión de arquitectura, así que no lleva ADR.
+
+## Reglas
+
+1. Solo se guardan prompts que se hayan usado, con su resultado real.
+2. Cada fichero enlaza su ticket y subtarea.
+3. Nunca se guardan tokens ni credenciales.
+4. Se escribe primero la parte de "Qué tuve que corregir" y "Lección": es lo que mejora los siguientes prompts.
+
+## Buenas prácticas acumuladas
+
+- Indicar paquete, ruta y ficheros permitidos, y decir "no toques nada más".
+- Prohibir imports concretos (Spring, JPA, Jakarta) y Lombok.
+- Dar nombres exactos de constantes, clases y métodos, no solo describirlos.
+- Pedir fechas fijas (nunca `Instant.now()`) en tests.
+- Pedir un único sitio para cada lógica, para que no se duplique.
+- Pedir a la IA que redacte, y revisar yo cada línea de código generado.
+
+## Índice
+
+- [0000. Plantilla](docs/prompts/0000-plantilla.md)
+- [0001. Issue de BOOK-003](docs/prompts/0001-issue-book-003.md)
+- [0002. Dominio, bloque A](docs/prompts/0002-dominio-bloque-a.md)
+- [0003. strip() en Categoria y Ciudad](docs/prompts/0003-strip-categoria-ciudad.md)
+- [0004. strip() en Negocio](docs/prompts/0004-strip-negocio.md)
+- [0005. Tests de strip()](docs/prompts/0005-tests-strip.md)
+
