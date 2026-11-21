@@ -23,6 +23,5 @@ El nombre se normaliza con `strip()` antes de validar, y la longitud máxima se 
 
 - **Positivas**: menos clases y reglas visibles en un solo sitio.
 - **Negativas**: la validación vive en `Negocio`, así que cualquier otra clase que use un nombre debe repetirla o extraer el tipo.
-- **Obligaciones**: 
-    - un nombre inválido lanza una excepción de dominio, que se define en S4.
-    - El nombre se normaliza con `strip()` antes de validar, y la longitud máxima se mide sobre el valor ya normalizado. La lógica vive en un único método privado de `Negocio`, usado por `crear(...)` y `reconstruir(...)`.s
+- **Obligaciones**:
+  - Un nombre inválido lanza una excepción de dominio (`NombreNoValidoException`, ver [ADR 0014](0014-excepciones-de-dominio.md)).

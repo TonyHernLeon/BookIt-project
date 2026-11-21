@@ -36,7 +36,7 @@ Hay que decidir qué excepciones existen, cómo se organizan, si son *checked* o
 | Excepción | Quién la lanza |
 |---|---|
 | `NombreNoValidoException`, `CategoriaNoValidaException`, `CiudadNoValidaException` | `Negocio` (en `crear(...)` y `reconstruir(...)`) y los `record` `Categoria` y `Ciudad` |
-| `NegocioNoEncontradoException` | El servicio de aplicación, cuando `NegocioRepository.obtenerPorId(...)` devuelve un `Optional` vacío |
+| `NegocioNoEncontradoException` | El servicio de aplicación, cuando `NegocioRepository.buscarPorId(...)` devuelve un `Optional` vacío |
 
 5. **El dominio no conoce HTTP.** Traducir estas excepciones a respuestas (por ejemplo, 400 para `DatoInvalidoException` y 404 para `NegocioNoEncontradoException`) será trabajo de `infrastructure.web` en otro ticket.
 
