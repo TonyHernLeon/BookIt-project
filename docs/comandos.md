@@ -18,9 +18,9 @@ Guía personal. Se amplía a medida que aparecen comandos nuevos.
 |---|---|---|
 | Levantar la BD | Raíz del repo | `docker compose up -d` |
 | Compilar y pasar tests | `catalog-service/` (con la BD levantada) | `mvn clean verify` |
+| Ejecutar solo los tests del dominio | `catalog-service/` (no necesita Docker) | `mvn test -Dtest='CategoriaTest,CiudadTest,NegocioTest'` |
 | Arrancar el servicio | `catalog-service/` | `mvn spring-boot:run` |
 | Comprobar salud | Navegador | `localhost:8080/actuator/health` |
-
 Antes de commitear: levanta la BD (`docker compose up -d` en la raíz) y ejecuta `mvn clean verify` en `catalog-service/`. Debe acabar en `BUILD SUCCESS`.
 
 ## Git
@@ -40,3 +40,5 @@ Antes de commitear: levanta la BD (`docker compose up -d` en la raíz) y ejecuta
 | Checksum mismatch de Flyway | Edité una migración ya aplicada | Revertir el fichero, nunca editarla |
 | No encuentra `@SpringBootConfiguration` | Test en otro paquete que la clase principal | Mover el test al mismo paquete |
 | Aparece `failed to connect to the docker API ... docker.sock` | Docker Desktop no está arrancado | Abrir Docker Desktop y esperar a Engine running |
+| Un test pasa pero no debería, o el log parece repetido | Se pegó una salida antigua o el test no comprueba lo que creemos | Mirar la hora de `Finished at` (debe ser nueva) y romper a propósito la línea que prueba: el test debe ponerse en rojo. Después, revertir |
+| `git add .` no añade un fichero y `git commit` dice "no changes added" | Estás en una subcarpeta y el fichero está fuera de ella | Subir a la raíz del repo antes de `git add .`, o dar la ruta del fichero |
