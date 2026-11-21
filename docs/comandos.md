@@ -42,3 +42,4 @@ Antes de commitear: levanta la BD (`docker compose up -d` en la raíz) y ejecuta
 | Aparece `failed to connect to the docker API ... docker.sock` | Docker Desktop no está arrancado | Abrir Docker Desktop y esperar a Engine running |
 | Un test pasa pero no debería, o el log parece repetido | Se pegó una salida antigua o el test no comprueba lo que creemos | Mirar la hora de `Finished at` (debe ser nueva) y romper a propósito la línea que prueba: el test debe ponerse en rojo. Después, revertir |
 | `git add .` no añade un fichero y `git commit` dice "no changes added" | Estás en una subcarpeta y el fichero está fuera de ella | Subir a la raíz del repo antes de `git add .`, o dar la ruta del fichero |
+| IntelliJ ofrece dos clases con el mismo nombre al importar | Hay librerías en el classpath con clases homónimas | Elegir la del JDK (`java.*`) para tipos básicos, y comprobar que los imports no son de Spring, JPA, Jakarta ni Hibernate en `domain` y `port` |
