@@ -23,7 +23,7 @@ La `V1` guarda `categoria` y `ciudad` como `VARCHAR`. Una categoría como "clín
 ## Consecuencias
 
 - **Positivas**: es imposible crear una categoría o ciudad inválida, y pasar a tablas o añadir país a `Ciudad` solo cambia ese tipo.
-- **Negativas**: 
-    - más clases para reglas hoy simples. El texto libre permite variantes ("Peluquería", "peluqueria") hasta que se normalice. 
-    - `strip()` elimina los espacios sobrantes, pero el texto libre sigue permitiendo variantes de mayúsculas y tildes ("Peluquería" y "peluqueria") hasta que se normalice o se pase a tablas propias.
+- **Negativas**:
+  - Más clases para reglas hoy simples.
+  - `strip()` elimina los espacios sobrantes, pero el texto libre sigue permitiendo variantes de mayúsculas y tildes ("Peluquería" y "peluqueria") hasta que se normalice o se pase a tablas propias.
 - **Obligaciones**: si se pasa a tablas propias, se escribirá un ADR nuevo y una migración `V2`; la `V1` no se edita.

@@ -1,6 +1,6 @@
 # 0006. Esqueleto del servicio de aplicación del catálogo
 
-Fecha: 2026-11-xx
+Fecha: 2026-11-21
 Ticket: BOOK-003 (S5, bloque C)
 Herramienta: GitHub Copilot
 
@@ -31,12 +31,12 @@ Estructura:
 
 ## Resultado
 
-Completar tras ejecutarlo: ¿generó un solo fichero con el paquete correcto, sin anotaciones de Spring y con los tres cuerpos en `UnsupportedOperationException`?
+Generó `NegocioService` en `application.service`, sin anotaciones de Spring, con campos `final`, constructor y los tres métodos con cuerpo `UnsupportedOperationException`.
 
 ## Qué tuve que corregir
 
-Completar tras revisar el fichero generado.
+Escribí yo la lógica. En `registrar` sustituí un bloque de `IllegalArgumentException` por `Objects.requireNonNull` (contradecía el ADR 0014) y devolví lo que devuelve `guardar`. En `consultarPorId` incluí el id en el mensaje. Quedaron comentarios que repetían el código.
 
 ## Lección para el próximo prompt
 
-Delegar solo la estructura y escribir yo la lógica permite aprender lo importante sin perder tiempo en código repetitivo. Pedir siempre ruta y paquete exactos, y prohibir anotaciones de Spring en `application`.
+Delegar solo la estructura y escribir yo la lógica funcionó. Añadir "sin comentarios" y el nombre exacto de las constantes de mensaje.

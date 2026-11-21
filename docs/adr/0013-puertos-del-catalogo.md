@@ -27,7 +27,7 @@ El catálogo tiene tres funcionalidades: registrar un negocio, consultarlo por s
 | Método | Recibe | Devuelve |
 |---|---|---|
 | `guardar` | Un `Negocio` | El `Negocio` guardado |
-| `obtenerPorId` | Un `UUID` | `Optional<Negocio>` |
+| `buscarPorId` | Un `UUID` | `Optional<Negocio>` |
 | `buscarPorCiudadYCategoria` | `Ciudad` y `Categoria` | `List<Negocio>` |
 
 3. **La entrada recibe datos sueltos; la salida recibe el `Negocio` ya construido.** Quien llama desde fuera (por ejemplo, un controlador) solo tiene un nombre, una categoría y una ciudad. El servicio de aplicación construye el `Negocio` con `Negocio.crear(...)` (ver [ADR 0009](0009-negocio-como-entidad-de-dominio.md)) y se lo pasa ya válido al puerto de salida.
@@ -35,6 +35,8 @@ El catálogo tiene tres funcionalidades: registrar un negocio, consultarlo por s
 4. **Las firmas solo usan tipos del dominio y del JDK** (`Negocio`, `Ciudad`, `Categoria`, `UUID`, `Optional`, `List`). Nunca aparecen clases de JPA, SQL ni de Spring.
 
 5. `RegistrarNegocioUseCase.registrar(...)` recibe un `RegistrarNegocioCommand` (`record` en `application.port.in` con `nombre`, `categoria` y `ciudad` como `String`), para evitar errores de orden entre parámetros del mismo tipo y facilitar la lectura. No cambia lo decidido: la entrada sigue recibiendo datos sueltos y no un `Negocio`.
+
+6. El servicio de aplicación, `NegocioService`, vive en `application.service`, implementa las tres interfaces de entrada y recibe `NegocioRepository` y `Clock` por constructor. Es Java puro, sin anotaciones de Spring; se registrará como bean desde `infrastructure`.
 
 ## Alternativas consideradas
 
@@ -53,6 +55,7 @@ El catálogo tiene tres funcionalidades: registrar un negocio, consultarlo por s
 - **Negativas**:
   - Más ficheros (tres interfaces de entrada en vez de una) para funcionalidades hoy muy pequeñas.
   - Quien venga de una arquitectura clásica con servicios puede tardar en acostumbrarse a pensar en casos de uso.
+  - `registrar` recibe `String` (el servicio construye `Categoria` y `Ciudad`) y `buscar` recibe `Ciudad` y `Categoria` ya construidos, así que la capa web tendrá que construirlos en la búsqueda.
 - **Obligaciones**:
   - Ninguna firma de `port.in` ni `port.out` puede mencionar JPA, SQL, Spring ni clases de infraestructura.
   - El adaptador de persistencia implementará `NegocioRepository` y convertirá entre el `Negocio` del dominio y la entidad JPA.
