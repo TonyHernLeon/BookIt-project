@@ -34,6 +34,8 @@ El catálogo tiene tres funcionalidades: registrar un negocio, consultarlo por s
 
 4. **Las firmas solo usan tipos del dominio y del JDK** (`Negocio`, `Ciudad`, `Categoria`, `UUID`, `Optional`, `List`). Nunca aparecen clases de JPA, SQL ni de Spring.
 
+5. `RegistrarNegocioUseCase.registrar(...)` recibe un `RegistrarNegocioCommand` (`record` en `application.port.in` con `nombre`, `categoria` y `ciudad` como `String`), para evitar errores de orden entre parámetros del mismo tipo y facilitar la lectura. No cambia lo decidido: la entrada sigue recibiendo datos sueltos y no un `Negocio`.
+
 ## Alternativas consideradas
 
 - **Una sola interfaz con los tres métodos (por ejemplo, `CatalogoUseCase`)**: descartada. Es más corta y se parece a un `NegocioService` clásico, pero quien solo necesita consultar queda atado también a registrar y a buscar. Además, cada cambio afecta a toda la interfaz y las pruebas se mezclan.
