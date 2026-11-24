@@ -80,4 +80,8 @@ Prompts usados con GitHub Copilot en BookIt, con su resultado real y lo aprendid
 - [0004. strip() en Negocio](docs/prompts/0004-strip-negocio.md)
 - [0005. Tests de strip()](docs/prompts/0005-tests-strip.md)
 - [0006. Esqueleto del servicio de aplicación](docs/prompts/0006-servicio-aplicacion.md)
+- [0007. Esqueleto de tests del servicio de aplicación](docs/prompts/0007-tests-servicio-aplicacion.md)
+- [0008. Tests de NegocioService](docs/prompts/0008-tests-reglas-dominio.md)
+
+
 
