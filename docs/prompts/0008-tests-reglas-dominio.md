@@ -1,6 +1,6 @@
 # 0008. Esqueleto de tests de reglas del dominio
 
-Fecha: [COMPLETAR]
+Fecha: 2026-11-24
 
 ## Objetivo
 
@@ -70,12 +70,16 @@ A continuación te pego el contenido actual de CategoriaTest.java, CiudadTest.ja
 
 ## Resultado
 
-[COMPLETAR: qué generó la IA, si respetó los nombres y el orden, y si el esqueleto compiló con `mvn test-compile`]
+La IA añadió los métodos pedidos en `CategoriaTest` (5), `CiudadTest` (5) y `NegocioTest` (10), con los nombres exactos y en el orden indicado, cada uno con `@Test` y `@Disabled("Pendiente de implementar")`. Los tests de `strip()` que ya existían se conservaron. No se tocó ningún fichero de `src/main`. El esqueleto compila con `./mvnw test-compile` sin errores.
+
+Después se revisó cada caso contra los ADR 0006, 0009, 0011, 0012 y 0014 para decidir qué datos usar en cada test (nulo, vacío, solo espacios incluidos tabuladores y saltos de línea, 150/151 caracteres con y sin espacios alrededor, ids fijos y fecha fija) y cuál es la excepción esperada.
 
 ## Qué tuve que corregir
 
-[COMPLETAR: por ejemplo imports sobrantes, constante de fecha duplicada, métodos fuera de orden, cuerpos con código que no pedí]
+- No se declaró la constante `FECHA_FIJA` que pedía el prompt: `NegocioTest` usa `Instant.parse("2026-01-01T10:00:00Z")` en línea en el test existente. Al implementar los tests restantes conviene extraerla a una constante para no repetirla.
+- `NegocioTest` importa `Disabled`, `Test`, `Instant` y `assertEquals`, y todos se usan. Al implementar los cuerpos habrá que añadir `assertThrows`, `assertNotEquals`, `UUID` y las excepciones.
+- El esqueleto no cubre categoría nula, ciudad nula ni `reconstruir` con nombre inválido, casos que sí prevén el ADR 0009 y el código. Quedan como mejora.
 
 ## Lección
 
-Un esqueleto con `@Disabled("Pendiente de implementar")` evita que un test vacío salga en verde sin comprobar nada. Pedir a la IA solo la estructura, con nombres exactos, me deja a mí lo importante: elegir los datos, las aserciones y comprobar cada test en rojo con el ejercicio de romper. [COMPLETAR: añadir lo que haya aprendido al hacerlo]
+Un esqueleto con `@Disabled("Pendiente de implementar")` evita que un test vacío salga en verde sin comprobar nada. Pedir a la IA solo la estructura, con nombres exactos, me deja a mí lo importante: elegir los datos, las aserciones y comprobar cada test en rojo con el ejercicio de romper. Al analizar los casos aprendí que los errores viven en la frontera (150 frente a 151 caracteres) y en el orden de las operaciones (el `strip()` va antes de validar vacío y longitud). También que un `id` o una fecha nulos son errores de programación (`NullPointerException`), mientras que un nombre nulo es un dato de usuario inválido (`NombreNoValidoException`), y que al probar un campo el resto de datos debe ser válido para que el test falle por la causa correcta.
