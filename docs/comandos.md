@@ -31,6 +31,7 @@ Antes de commitear: levanta la BD (`docker compose up -d` en la raíz) y ejecuta
 | Quitar algo del staging | `git restore --staged <fichero>` |
 | Deshacer cambios de un fichero | `git restore <fichero>` |
 | Ver qué cambié | `git diff <fichero>` |
+| Que git pagine solo cuando la salida no cabe en pantalla | `git config --global core.pager "less -FRX"` |
 
 ## Cuando algo falla
 
@@ -43,3 +44,4 @@ Antes de commitear: levanta la BD (`docker compose up -d` en la raíz) y ejecuta
 | Un test pasa pero no debería, o el log parece repetido | Se pegó una salida antigua o el test no comprueba lo que creemos | Mirar la hora de `Finished at` (debe ser nueva) y romper a propósito la línea que prueba: el test debe ponerse en rojo. Después, revertir |
 | `git add .` no añade un fichero y `git commit` dice "no changes added" | Estás en una subcarpeta y el fichero está fuera de ella | Subir a la raíz del repo antes de `git add .`, o dar la ruta del fichero |
 | IntelliJ ofrece dos clases con el mismo nombre al importar | Hay librerías en el classpath con clases homónimas | Elegir la del JDK (`java.*`) para tipos básicos, y comprobar que los imports no son de Spring, JPA, Jakarta ni Hibernate en `domain` y `port` |
+| Tras `git diff`, `git log` o `git show` la terminal se queda en pantalla completa con `~` en cada línea y `(END)` abajo | Git abre la salida en un paginador (`less`) cuando es más larga que la pantalla. Si sale vacía con `(END)`, no había nada que mostrar, a menudo porque la ruta no existe desde donde estás | Pulso `q` para salir. Si estaba vacío, reviso desde qué carpeta lancé el comando y uso rutas relativas a ella. Para ver la salida directamente: `git --no-pager diff` |
