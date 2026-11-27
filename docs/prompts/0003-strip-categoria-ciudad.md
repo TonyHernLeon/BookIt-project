@@ -32,6 +32,8 @@ Aplicó el orden correcto (null, `strip()`, `isEmpty()` y longitud) y creó la c
 
 La constante salió con el nombre `MENSAJE_NULO` en lugar de `MENSAJE_INVALIDA`, y engaña porque el texto cubre nulo, vacío y demasiado largo. Pendiente de renombrar con *Refactor → Rename*. También sobraba un comentario `// - Constantes` solo en `Categoria`.
 
+Renombré después la constante `MENSAJE_NULO` a `MENSAJE_INVALIDA` con Refactor → Rename de IntelliJ (fecha: 2026-11-27), porque el texto cubre nulo, vacío y longitud excesiva. Comprobé con `grep -rn "MENSAJE_" catalog-service/src` que `Categoria`, `Ciudad` y `Negocio` usan ya el nombre nuevo y que `docs/ai-context.md` seguía con el antiguo, así que lo corregí también.
+
 ## Lección para el próximo prompt
 
 Dar el nombre exacto de la constante y repetirlo ("la constante se llama exactamente MENSAJE_INVALIDA"). Pedir también "sin comentarios".
