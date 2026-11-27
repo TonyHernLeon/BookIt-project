@@ -49,6 +49,7 @@ docker compose up -d
 - [0012. El nombre del negocio es un String validado en Negocio](docs/adr/0012-nombre-de-negocio-como-string.md)
 - [0013. Puertos del catálogo: una interfaz por caso de uso](docs/adr/0013-puertos-del-catalogo.md)
 - [0014. Excepciones de dominio: jerarquía unchecked con una excepción por campo](docs/adr/0014-excepciones-de-dominio.md)
+- [0015. Repositorio en memoria solo en src/test](docs/adr/0015-repositorio-en-memoria-solo-en-tests.md)
 
 
 # Biblioteca de prompts
