@@ -1,0 +1,27 @@
+# 0012. El nombre del negocio es un String validado en Negocio
+
+Fecha: 2026-11-13
+Estado: Aceptada
+
+## Contexto
+
+El nombre no tiene identidad propia y sus reglas son pocas y simples. La `V1` exige `NOT NULL`, un `CHECK` de no vacío y `VARCHAR(150)`.
+
+## Decisión
+
+`nombre` es un `String` dentro de `Negocio`. El método de creación valida que no sea nulo, vacío ni solo espacios, y que no supere 150 caracteres.
+
+El nombre se normaliza con `strip()` antes de validar, y la longitud máxima se mide sobre el valor ya normalizado. La lógica vive en un único método privado de `Negocio`, usado por `crear(...)` y `reconstruir(...)`.
+
+## Alternativas consideradas
+
+- **`record NombreNegocio`**: descartada por ahora. Con tres reglas, aporta más código que valor. Se extraerá si las reglas crecen.
+- **Prohibir nombres solo numéricos**: aplazada. Existen marcas así y es una regla de negocio que conviene decidir con datos reales.
+- **`String` validado en `Negocio`**: elegida.
+
+## Consecuencias
+
+- **Positivas**: menos clases y reglas visibles en un solo sitio.
+- **Negativas**: la validación vive en `Negocio`, así que cualquier otra clase que use un nombre debe repetirla o extraer el tipo.
+- **Obligaciones**:
+  - Un nombre inválido lanza una excepción de dominio (`NombreNoValidoException`, ver [ADR 0014](0014-excepciones-de-dominio.md)).
