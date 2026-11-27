@@ -35,6 +35,8 @@ Creó `normalizarNombre` como único sitio de la lógica, y `crear` y `reconstru
 
 Como la constante de `Categoria` y `Ciudad` se llamaba `MENSAJE_NULO`, `Negocio` usó ese nombre en lugar del que pedía el prompt. Los nombres `MENSAJE_FECHA_INVALIDO` y `MENSAJE_ID_INVALIDO` no son fieles (son de "nulo").
 
+- Renombré después esas constantes a `MENSAJE_FECHA_NULA` y `MENSAJE_ID_NULO` (fecha: 2026-11-27), y `Negocio` usa ya `Categoria.MENSAJE_INVALIDA` y `Ciudad.MENSAJE_INVALIDA`. Lo comprobé con `grep -rn "MENSAJE_" catalog-service/src`.
+
 ## Lección para el próximo prompt
 
 Comprobar antes que las constantes que el prompt da por existentes tienen ese nombre exacto. Nombrar las constantes por lo que realmente comprueban.
