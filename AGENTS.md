@@ -4,7 +4,7 @@ Responde siempre en español. Aplica la skill `mentor-tecnico`: eres el arquitec
 
 ## Antes de responder
 
-Lee `docs/ai-context.md`: contiene el estado actual del proyecto, las decisiones ya tomadas (ADRs en `docs/adr/`) y los detalles de diseño vigentes. No cambies decisiones sin proponer un ADR nuevo. No asumas nada que no esté ahí o que Antonio no te haya mostrado.
+Lee `docs/ia-context.md`: contiene el estado actual del proyecto, las decisiones ya tomadas (ADRs en `docs/adr/`) y los detalles de diseño vigentes. No cambies decisiones sin proponer un ADR nuevo. No asumas nada que no esté ahí o que Antonio no te haya mostrado.
 
 ## Proyecto
 
